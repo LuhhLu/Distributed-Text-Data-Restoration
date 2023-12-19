@@ -6,7 +6,43 @@
 
 Another experiment at: https://github.com/mingyi850/lamp-flwr
 
-## Prerequisites
+
+## Project Milestones
+
+1. Setup Gradient reconstruction attack on Large Language Models (Completed)
+2. Setup real-life FL scenario to conduct LLM attacks on. (Completed)
+3. [Perform Secure Aggregation for Federated learning on FL Setup (Completed)](https://github.com/mingyi850/lamp-flwr)
+4. [Analyse the cost-effectiveness tradeoff of Secure Aggregation against gradient reconstruction attacks. (Completed)](https://github.com/mingyi850/lamp-flwr)
+
+
+## Table of Contents
+- [Repository and Code structure](#repository%20and%20Code%20structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Results](#results)
+- [Citation](#citation)
+
+## Repository and Code structure
+
+Explanation of the directory structure and files:
+
+- `Figures/`: Contains graphical outputs of the project, such as evaluation metrics and process visualizations.
+- `*.py`: Python scripts:
+  - `args_factory.py`: Sets up command-line argument parsing.
+  - `constants.py`: Defines constant values used throughout the codebase.
+  - `data_utils.py`: Provides utilities for data handling.
+  - `nlp_utils.py`: Contains utilities for natural language processing tasks.
+  - `staleness.py`: Script for running Staleness Experiments.
+  - `train-sync.py`: Script for model training in Distributed manner.
+  - `utilities.py`: General utility functions.
+- `environment.yml`: Contains the conda environment specification.
+- `Figures.ipynb`: Jupyter Notebook for generating figures.
+- `LICENSE.txt`: The license under which the project is released.
+- `README.md`: This file with project information.
+- `Results.xlsx`: Spreadsheet with the Experiments' results.
+- Output files (`*.out`): Results for single input Demonstartion.
+
+## Installation
 - Install Anaconda. 
 - Create the conda environment:<br>
    ```bash
@@ -24,7 +60,7 @@ Another experiment at: https://github.com/mingyi850/lamp-flwr
     rm -rf files.sri.inf.ethz.ch
     ```
 
-## Staleness experiments
+## Usage
 
 - Train models at Parallel System
 
@@ -38,7 +74,6 @@ model saved to path: SYNC/DATASET/noise_{SIGMA}/{LOCAL_RANK}/{STEPS}
     ```bash
     python staleness.py --dataset DATASET --noise SIGMA --steps STEPS --staleness STALENESS --split test --loss cos --n_inputs 5 -b BATCHSIZE --coeff_perplexity 0.2 --coeff_reg 1 --lr 0.01 --lr_decay 0.89 --n_steps 2000
     ```
-
 
 
 ### Parameters
@@ -108,5 +143,18 @@ Staleness 20:
 
 ![Alt text](Figures/ROUGE-L%20Scores.png)
 
+In data restoration, the study revealed that as staleness increases, there is a significant decrease in both rouge-1 and rouge-L scores, indicating that the restoration results become less favorable. Rouge-2 exhibits a high degree of randomness, with initialized embeddings having a substantial impact on rouge-2. Across different datasets, SST-2 and CoLA texts are relatively straightforward, showing less sensitivity to staleness in their restoration. However, for Rotten Tomatoes, given the complexity of its text, an increase in staleness significantly leads to a deterioration in the restoration quality.
 
 
+## Citation
+```
+@inproceedings{
+    balunovic2022lamp,
+    title={{LAMP}: Extracting Text from Gradients with Language Model Priors},
+    author={Mislav Balunovic and Dimitar Iliev Dimitrov and Nikola Jovanovi{\'c} and Martin Vechev},
+    booktitle={Advances in Neural Information Processing Systems},
+    editor={Alice H. Oh and Alekh Agarwal and Danielle Belgrave and Kyunghyun Cho},
+    year={2022},
+    url={https://openreview.net/forum?id=6iqd9JAVR1z}
+}
+```
