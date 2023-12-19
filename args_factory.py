@@ -16,7 +16,7 @@ def get_args():
     parser.add_argument('--n_inputs', type=int, required=True) # val:10/20, test:100
     parser.add_argument('--steps', type=int, required=True)
     parser.add_argument('--noise', type=float, required=True)
-    parser.add_argument('--stillness', type=int, required=True)
+    parser.add_argument('--staleness', type=int, required=True)
 
     parser.add_argument('--defense_noise', type=float, default=None) # add noise to true grads
     parser.add_argument('--defense_pct_mask', type=float, default=None) # mask some percentage of gradients
